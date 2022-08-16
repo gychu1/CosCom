@@ -10,3 +10,8 @@ UI Draft of the Web Application:
 
 ![image](https://user-images.githubusercontent.com/107321134/184429113-33ca5556-962b-4404-9712-e781220b616c.png)
 
+UML Draft:
+
+![image](https://user-images.githubusercontent.com/107321134/184966261-0430419c-bb52-4c28-83d4-bb1a3b377519.png)
+
+
