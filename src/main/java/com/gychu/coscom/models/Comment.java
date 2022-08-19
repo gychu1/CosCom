@@ -1,2 +1,7 @@
-package com.gychu.coscom.models;public class Comment {
+package com.gychu.coscom.models;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Comment {
 }

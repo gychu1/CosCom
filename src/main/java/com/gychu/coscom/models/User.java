@@ -5,8 +5,9 @@ import com.sun.istack.NotNull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
-@Entity(name="Users")
+@Entity(name="User")
 public class User {
     @Id
     @GeneratedValue
