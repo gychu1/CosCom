@@ -19,7 +19,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<User> getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return userRepository.findByUserName(username);
     }
 
