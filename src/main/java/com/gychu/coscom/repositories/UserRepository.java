@@ -1,11 +1,10 @@
 package com.gychu.coscom.repositories;
 
 import com.gychu.coscom.models.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> { //Using JPARepo interface since it extends CrudRepo interface.
 
     User findByUserName(String username);
 }
