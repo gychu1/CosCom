@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> { //Using JPARepo interface since it extends CrudRepo interface.
 
-    User findByUserName(String username);
+    User findByUsername(String username);
 }

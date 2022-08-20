@@ -14,7 +14,7 @@ public class User {
     @NotNull
     private String email;
     @NotNull
-    private String userName;
+    private String username;
     private String name;
     @NotNull
     private int age;
@@ -27,10 +27,10 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String email, String userName, String name, int age, String profileImage, List<Comment> comments, List<Post> posts) {
+    public User(Long id, String email, String username, String name, int age, String profileImage, List<Comment> comments, List<Post> posts) {
         this.id = id;
         this.email = email;
-        this.userName = userName;
+        this.username = username;
         this.name = name;
         this.age = age;
         this.profileImage = profileImage;
@@ -54,12 +54,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getName() {

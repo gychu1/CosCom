@@ -20,7 +20,32 @@ public class UserService {
     }
 
     public User getUserByUsername(String username) {
-        return userRepository.findByUserName(username);
+        return userRepository.findByUsername(username);
     }
+
+    public List<User> getAllUsers () {
+        return userRepository.findAll();
+    }
+
+    public User updateUser (String username, User user) {
+        User oldUser = getUserByUsername(username);
+
+        oldUser.setUsername(user.getUsername());
+        oldUser.setEmail(user.getEmail());
+        oldUser.setAge(user.getAge());
+        oldUser.setName(user.getName());
+        oldUser.setProfileImage(user.getProfileImage());
+
+        userRepository.save(oldUser);
+
+        return oldUser;
+    }
+
+    public Boolean deleteUser(String username) {
+        User userToDelete = getUserByUsername(username);
+        userRepository.delete(userToDelete);
+        return Boolean.TRUE;
+    }
+
 
 }
