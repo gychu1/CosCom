@@ -1,11 +1,9 @@
 package com.gychu.coscom.models;
 
+
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -21,7 +19,9 @@ public class User {
     @NotNull
     private int age;
     private String profileImage;
+    @OneToMany(mappedBy = "user") // One USER have many comments.
     private List<Comment> comments;
+    @OneToMany(mappedBy = "user") // One USER have many posts.
     private List<Post> posts;
 
     public User() {

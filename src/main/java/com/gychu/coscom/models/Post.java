@@ -1,9 +1,6 @@
 package com.gychu.coscom.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,7 +12,9 @@ public class Post {
     private Long id;
     private String image;
     private String text;
+    @OneToMany(mappedBy = "post") // One post contains many comments hence List<Comment>. It is mapped by the variable in Comment class that represents the Post class.
     private List<Comment> comments;
+    @ManyToOne // ManyToOne relationship with a user. Meaning There are many POST that belong to a specific USER.
     private User user;
     private LocalDate date;
 
