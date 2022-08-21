@@ -10,8 +10,8 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String image;
-    private String text;
+    private String imageURL;
+    private String description;
     @OneToMany(mappedBy = "post") // One post contains many comments hence List<Comment>. It is mapped by the variable in Comment class that represents the Post class.
     private List<Comment> comments;
     @ManyToOne // ManyToOne relationship with a user. Meaning There are many POST that belong to a specific USER.
@@ -21,10 +21,10 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id, String image, String text, List<Comment> comments, User user, LocalDate date) {
+    public Post(Long id, String imageURL, String description, List<Comment> comments, User user, LocalDate date) {
         this.id = id;
-        this.image = image;
-        this.text = text;
+        this.imageURL = imageURL;
+        this.description = description;
         this.comments = comments;
         this.user = user;
         this.date = date;
@@ -38,20 +38,20 @@ public class Post {
         this.id = id;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Comment> getComments() {
