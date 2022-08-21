@@ -29,12 +29,12 @@ public class PostController {
         return postService.getPostById(id);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     private Post updatePost (@PathVariable Long id, @RequestBody Post post) {
         return postService.updatePost(id, post);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     private Boolean deletePost (@PathVariable Long id) {
         return postService.deletePost(id);
     }
