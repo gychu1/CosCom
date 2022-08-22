@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @RestController
@@ -29,17 +30,29 @@ public class UserProfileController {
     }
 
     @GetMapping ("/{username}")
-    private ResponseEntity<UserProfile> getUserByUsername(@PathVariable("username") String username) {
-        return new ResponseEntity<>(userProfileService.getUserByUsername(username), HttpStatus.OK); //returning User with username.
+    private ResponseEntity<Object> getUserByUsername(@PathVariable("username") String username) {
+        try {
+            return new ResponseEntity<>(userProfileService.getUserByUsername(username), HttpStatus.OK); //returning User with username.
+        } catch (IllegalArgumentException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{username}")
-    private ResponseEntity<UserProfile> updateUser(@PathVariable String username, @RequestBody UserProfile userProfile) {
-        return new ResponseEntity<>(userProfileService.updateUser(username, userProfile), HttpStatus.OK);
+    private ResponseEntity<Object> updateUser(@PathVariable String username, @RequestBody UserProfile userProfile) {
+        try {
+            return new ResponseEntity<>(userProfileService.updateUser(username, userProfile), HttpStatus.OK);
+        } catch (IllegalArgumentException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{username}")
-    private ResponseEntity<Boolean> deleteUser(@PathVariable("username") String username) {
-        return new ResponseEntity<>(userProfileService.deleteUser(username), HttpStatus.NO_CONTENT);
+    private ResponseEntity<Object> deleteUser(@PathVariable("username") String username) {
+        try {
+            return new ResponseEntity<>(userProfileService.deleteUser(username), HttpStatus.NO_CONTENT);
+        } catch (IllegalArgumentException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 }
