@@ -3,6 +3,8 @@ package com.gychu.coscom.controllers;
 import com.gychu.coscom.models.UserProfile;
 import com.gychu.coscom.services.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,27 +19,27 @@ public class UserProfileController {
     UserProfileService userProfileService;
 
     @PostMapping
-    private UserProfile submitUser(@RequestBody UserProfile userProfile) {
-        return userProfileService.saveUser(userProfile); //returning the User, so you can see what got saved.
+    private ResponseEntity<UserProfile> submitUser(@RequestBody UserProfile userProfile) {
+        return new ResponseEntity<>(userProfileService.saveUser(userProfile), HttpStatus.CREATED); //returning the User, so you can see what got saved.
     }
 
     @GetMapping
-    private List<UserProfile> getAllUsers() {
-        return userProfileService.getAllUsers(); //returning the List of all Users.
+    private ResponseEntity<List<UserProfile>> getAllUsers() {
+        return new ResponseEntity<>(userProfileService.getAllUsers(), HttpStatus.OK); //returning the List of all Users.
     }
 
     @GetMapping ("/{username}")
-    private UserProfile getUserByUsername(@PathVariable("username") String username) {
-        return userProfileService.getUserByUsername(username); //returning User with username.
+    private ResponseEntity<UserProfile> getUserByUsername(@PathVariable("username") String username) {
+        return new ResponseEntity<>(userProfileService.getUserByUsername(username), HttpStatus.OK); //returning User with username.
     }
 
     @PutMapping("/{username}")
-    private UserProfile updateUser(@PathVariable String username, @RequestBody UserProfile userProfile) {
-        return userProfileService.updateUser(username, userProfile);
+    private ResponseEntity<UserProfile> updateUser(@PathVariable String username, @RequestBody UserProfile userProfile) {
+        return new ResponseEntity<>(userProfileService.updateUser(username, userProfile), HttpStatus.OK);
     }
 
     @DeleteMapping("/{username}")
-    private Boolean deleteUser(@PathVariable("username") String username) {
-        return userProfileService.deleteUser(username);
+    private ResponseEntity<Boolean> deleteUser(@PathVariable("username") String username) {
+        return new ResponseEntity<>(userProfileService.deleteUser(username), HttpStatus.NO_CONTENT);
     }
 }
