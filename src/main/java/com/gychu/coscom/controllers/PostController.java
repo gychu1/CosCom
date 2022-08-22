@@ -3,6 +3,8 @@ package com.gychu.coscom.controllers;
 import com.gychu.coscom.models.Post;
 import com.gychu.coscom.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,27 +17,27 @@ public class PostController {
     PostService postService;
 
     @PostMapping
-    private Post savePost(@RequestBody Post post) {
-        return postService.savePost(post);
+    private ResponseEntity<Post> savePost(@RequestBody Post post) {
+        return new ResponseEntity<>(postService.savePost(post), HttpStatus.CREATED);
     }
 
     @GetMapping
-    private List<Post> getAllPosts() {
-        return postService.getAllPosts();
+    private ResponseEntity<List<Post>> getAllPosts() {
+        return new ResponseEntity<>(postService.getAllPosts(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    private Post getPostById (@PathVariable Long id) {
-        return postService.getPostById(id);
+    private ResponseEntity<Post> getPostById (@PathVariable Long id) {
+        return new ResponseEntity<>(postService.getPostById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    private Post updatePost (@PathVariable Long id, @RequestBody Post post) {
-        return postService.updatePost(id, post);
+    private ResponseEntity<Post> updatePost (@PathVariable Long id, @RequestBody Post post) {
+        return new ResponseEntity<>(postService.updatePost(id, post), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")
-    private Boolean deletePost (@PathVariable Long id) {
-        return postService.deletePost(id);
+    private ResponseEntity<Boolean> deletePost (@PathVariable Long id) {
+        return new ResponseEntity<>(postService.deletePost(id), HttpStatus.NO_CONTENT);
     }
 }
