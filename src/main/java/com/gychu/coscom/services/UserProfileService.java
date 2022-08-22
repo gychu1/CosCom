@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,7 +21,12 @@ public class UserProfileService {
     }
 
     public UserProfile getUserByUsername(String username) {
-        return userProfileRepository.findByUsername(username);
+        Optional<UserProfile> maybeUserProfile = userProfileRepository.findByUsername(username);
+        if (maybeUserProfile.isPresent()) {
+            return maybeUserProfile.get();
+        } else {
+            throw new IllegalArgumentException(String.format("No user found for username %s", username));
+        }
     }
 
     public List<UserProfile> getAllUsers () {
