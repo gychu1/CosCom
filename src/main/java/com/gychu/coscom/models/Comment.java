@@ -11,7 +11,7 @@ public class Comment {
     private Long id;
     private String text;
     @ManyToOne // There are many COMMENTS belonging to one USER
-    private User user;
+    private UserProfile userProfile;
     @ManyToOne // There are many COMMENTS belonging to one POST
     private Post post;
     private LocalDate date;
@@ -19,10 +19,10 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Long id, String text, User user, LocalDate date) {
+    public Comment(Long id, String text, UserProfile userProfile, LocalDate date) {
         this.id = id;
         this.text = text;
-        this.user = user;
+        this.userProfile = userProfile;
         this.date = date;
     }
 
@@ -42,12 +42,12 @@ public class Comment {
         this.text = text;
     }
 
-    public User getUser() {
-        return user;
+    public UserProfile getUser() {
+        return userProfile;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 
     public LocalDate getDate() {

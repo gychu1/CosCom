@@ -1,13 +1,14 @@
 package com.gychu.coscom.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class User {
+public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,15 +20,17 @@ public class User {
     @NotNull
     private int age;
     private String profileImage;
-    @OneToMany(mappedBy = "user") // One USER have many comments.
+    @OneToMany(mappedBy = "userProfile") // One USER have many comments.
+    @JsonIgnore
     private List<Comment> comments;
-    @OneToMany(mappedBy = "user") // One USER have many posts.
+    @OneToMany(mappedBy = "userProfile") // One USER have many posts.
+    @JsonIgnore
     private List<Post> posts;
 
-    public User() {
+    public UserProfile() {
     }
 
-    public User(Long id, String email, String username, String name, int age, String profileImage, List<Comment> comments, List<Post> posts) {
+    public UserProfile(Long id, String email, String username, String name, int age, String profileImage, List<Comment> comments, List<Post> posts) {
         this.id = id;
         this.email = email;
         this.username = username;

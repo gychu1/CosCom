@@ -15,18 +15,18 @@ public class Post {
     @OneToMany(mappedBy = "post") // One post contains many comments hence List<Comment>. It is mapped by the variable in Comment class that represents the Post class.
     private List<Comment> comments;
     @ManyToOne // ManyToOne relationship with a user. Meaning There are many POST that belong to a specific USER.
-    private User user;
+    private UserProfile userProfile;
     private LocalDate date;
 
     public Post() {
     }
 
-    public Post(Long id, String imageURL, String description, List<Comment> comments, User user, LocalDate date) {
+    public Post(Long id, String imageURL, String description, List<Comment> comments, UserProfile userProfile, LocalDate date) {
         this.id = id;
         this.imageURL = imageURL;
         this.description = description;
         this.comments = comments;
-        this.user = user;
+        this.userProfile = userProfile;
         this.date = date;
     }
 
@@ -62,12 +62,12 @@ public class Post {
         this.comments = comments;
     }
 
-    public User getUser() {
-        return user;
+    public UserProfile getUser() {
+        return userProfile;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 
     public LocalDate getDate() {
