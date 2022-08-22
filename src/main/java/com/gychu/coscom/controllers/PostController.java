@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/post")
@@ -27,17 +28,29 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<Post> getPostById (@PathVariable Long id) {
-        return new ResponseEntity<>(postService.getPostById(id), HttpStatus.OK);
+    private ResponseEntity<Object> getPostById (@PathVariable Long id) {
+        try {
+            return new ResponseEntity<>(postService.getPostById(id), HttpStatus.OK);
+        } catch (IllegalArgumentException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")
-    private ResponseEntity<Post> updatePost (@PathVariable Long id, @RequestBody Post post) {
-        return new ResponseEntity<>(postService.updatePost(id, post), HttpStatus.ACCEPTED);
+    private ResponseEntity<Object> updatePost (@PathVariable Long id, @RequestBody Post post) {
+        try {
+            return new ResponseEntity<>(postService.updatePost(id, post), HttpStatus.ACCEPTED);
+        } catch (IllegalArgumentException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity<Boolean> deletePost (@PathVariable Long id) {
-        return new ResponseEntity<>(postService.deletePost(id), HttpStatus.NO_CONTENT);
+    private ResponseEntity<Object> deletePost (@PathVariable Long id) {
+        try {
+            return new ResponseEntity<>(postService.deletePost(id), HttpStatus.NO_CONTENT);
+        } catch (IllegalArgumentException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 }
