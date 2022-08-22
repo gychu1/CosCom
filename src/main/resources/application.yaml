@@ -1,0 +1,16 @@
+server:
+  error:
+    include-message: never
+    include-binding-errors: never
+
+spring:
+  datasource:
+    username: root
+    password: pass
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
